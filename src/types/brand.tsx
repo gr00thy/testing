@@ -1,5 +1,6 @@
 export interface Brand {
   id: number;
-  name: string;
-  description: string;
+  myBrand: string;
+  myHolder: string;
+  myState: string;
 }

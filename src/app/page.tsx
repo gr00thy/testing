@@ -19,34 +19,109 @@ export default function HomePage() {
   };
 
   return (
-    <main className="container">
-      <h1>Registros de Marcas</h1>
-      <button onClick={() => router.push("/create")}>Crear Nueva Marca</button>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {brands.map((brand) => (
-            <tr key={brand.id}>
-              <td>{brand.id}</td>
-              <td>{brand.name}</td>
-              <td>{brand.description}</td>
-              <td>
-                <button onClick={() => router.push(`/edit/${brand.id}`)}>
-                  Editar
+    <div>
+      <div className="py-2 px-6 bg-white flex items-center shadow-md shadow-black/5">
+        <button className="text-lg text-gray-600">
+        <i className="ri-menu-line"></i>
+        </button>
+        <ul className="flex items-center text-sm ml-4">
+          <li className="mr-2">
+            <a href="#" className="text-gray-400 hover:text-gray-600 font-medium">Servicios</a>
+          </li>
+          <li className="text-gray-600 mr-2 font-medium">/</li>
+          <li className="text-gray-600 mr-2 font-medium">Registro de marcas</li>
+        </ul>
+        <ul className="ml-auto flex items-center">
+          <li className="mr-1">
+            <button className="text-gray-400 w-8 h-8 rounded flex items-center justify-center hover:text-gray-600">
+              <i className="ri-search-line"></i>
+            </button>
+          </li>
+          <li className="mr-1">
+            <button className="text-gray-400 w-8 h-8 rounded flex items-center justify-center hover:text-gray-600">
+              <i className="ri-notification-3-line"></i>
+            </button>
+          </li>
+          <li>
+            <button className="text-gray-400 w-8 h-8 rounded flex items-center justify-center hover:text-gray-600">
+              <img src="https://placehold.co/32x32" alt="" className="w-8 h-8 rounded block object-cover align-middle" />
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div className="p-6">
+        <div className="grid grid-cols-1 gap-6">
+          <div className="bg-white border border-gray-100 p-6 shadow-md shadow-black/10 rounded-md">
+            <div className="flex justify-between mb-5 items-center">
+              <div className="font-medium">Registro de marcas</div>
+              <div className="flex justify-end">
+                <button className="bg-blue-500 hover:bg-blue-700 text-sm font-medium text-white py-2 px-4 rounded" onClick={() => router.push("/create")}>
+                  <i className="ri-add-box-line mr-2"></i>Nuevo Registro
                 </button>
-                <button onClick={() => handleDelete(brand.id)}>Eliminar</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </main>
+              </div>
+            </div>
+            {/* <div className="flex justify-end mb-4">
+              <button className="bg-blue-950 text-sm font-medium text-white py-2 px-4 rounded" onClick={() => router.push("/create")}>
+                <i className="ri-add-box-line mr-2"></i>
+                Nuevo Registro
+              </button>
+            </div> */}
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[540px]">
+                <thead>
+                  <tr>
+                    <th className="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">ID</th>
+                    <th className="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Marca</th>
+                    <th className="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Titular</th>
+                    <th className="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Estado</th>
+                    <th className="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tr-md rounded-br-md">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {brands.map((brand) => (
+                    <tr key={brand.id}>
+                      <td className="py-2 px-4 border-b border-b-gray-50">
+                        <span className="text-[13px] font-medium text-gray-400">
+                          {brand.id}
+                        </span>
+                      </td>
+                      <td className="py-2 px-4 border-b border-b-gray-50">
+                        <span className="text-[13px] font-medium text-gray-400">
+                          {brand.myBrand}
+                        </span>
+                      </td>
+                      <td className="py-2 px-4 border-b border-b-gray-50">
+                        <span className="text-[13px] font-medium text-gray-400">
+                          {brand.myHolder}
+                        </span>  
+                      </td>
+                      <td className="py-2 px-4 border-b border-b-gray-50">
+                        <span className="inline-block p-1 rounded bg-emerald-500/10 text-emerald-500 font-semibold text-[12px] leading-none">
+                          {brand.myState}
+                        </span>  
+                      </td>
+                      <td className="py-2 px-4 border-b border-b-gray-50">
+                        <span className="text-[14px] font-medium text-gray-400 mr-4">
+                          <button onClick={() => router.push(`/edit/${brand.id}`)}>
+                            <i className="ri-file-edit-line mr-1"></i>
+                            Editar
+                          </button>
+                        </span>
+                        <span className="text-[14px] font-medium text-gray-400">
+                          <button onClick={() => handleDelete(brand.id)}>
+                            <i className="ri-delete-bin-2-line mr-1"></i>
+                            Eliminar
+                          </button>
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
